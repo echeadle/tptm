@@ -7,7 +7,7 @@ def print_header():
 
 
 def get_birthday_from_user():
-    print('When were you born? '))
+    print('When were you born? ')
     year = int(input('Year [YYYY]: '))
     month = int(input('Month [MM]: '))
     day = int(input('Day [DD]: '))
