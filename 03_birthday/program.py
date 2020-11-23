@@ -22,8 +22,9 @@ def compute_days_between_dates(original_date, target_date):
     return dt.days
 
 
-def print_birthday_information():
-    pass
+def print_birthday_information(days):
+    if days < 0:
+        print(f'You had your birthday {days} ago this year.')
 
 
 def main():
@@ -31,8 +32,7 @@ def main():
     bday = get_birthday_from_user()
     today = datetime.date.today()
     number_of_days = compute_days_between_dates(bday, today)
-    print(number_of_days)
-    #print_birthday_information(number_of_days)
+    print_birthday_information(number_of_days)
 
 
 main()
