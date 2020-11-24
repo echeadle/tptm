@@ -1,3 +1,4 @@
+import journal
 def print_header():
     print('-' * 40)
     print('           JOURNAL APP')
@@ -8,7 +9,7 @@ def print_header():
 def run_event_loop():
     print('What do you want to do with your journal?')
     cmd = None
-    journal_data = []
+    journal_data = journal.load()
 
 
     while cmd != 'x':
