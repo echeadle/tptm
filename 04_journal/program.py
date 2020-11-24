@@ -1,4 +1,5 @@
 import journal
+
 def print_header():
     print('-' * 40)
     print('           JOURNAL APP')
