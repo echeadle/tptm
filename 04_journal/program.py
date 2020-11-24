@@ -23,12 +23,10 @@ def run_event_loop():
             print(f"Sorry we don't understand '{cmd}'")
 
     print('Done, goodbye.')
-
-
 def list_entries(data):
     print('Your journal entries: ')
     entries = reversed(data)
-    for entry in entries:
+    for entry in enumerate(entries):
         print(entry)
 
 
