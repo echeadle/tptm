@@ -27,6 +27,8 @@ def run_event_loop():
 
     print('Done, goodbye.')
     journal.save(journal_name, journal_data)
+
+    
 def list_entries(data):
     print('Your journal entries: ')
     entries = reversed(data)
