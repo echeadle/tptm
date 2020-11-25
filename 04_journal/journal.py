@@ -11,7 +11,7 @@ def save(name, journal_data):
     fout = open(filename, 'w')
 
     for entry in journal_data:
-        fout.write(entry)
+        fout.write(entry + '\n')
     
     fout.close()
 
