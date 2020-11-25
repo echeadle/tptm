@@ -8,7 +8,7 @@ def load(name):
     if os.path.exists(filename):
         with open(filename, 'r') as fin:
             for entry in fin.readlines():
-                print("would load: " + entry.rstrip())
+                data.append(entry.rstrip())
 
     return data
 
