@@ -1,5 +1,5 @@
 """
-This modules implements the Journal.
+This module implements the Journal.
 """
 
 import os
