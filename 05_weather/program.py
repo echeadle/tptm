@@ -2,12 +2,12 @@ def main():
     # Show the header
     show_header()
     # Get the location request
-    location_text 
+    location_text  = input('Where do you want the weather report (e.g. Salt Lake, US? ')
+    print(f'You selcted {location_text}')
     # Convert plaintext over to data we can use
     # Get report from the API.
     # Report the weather
-    print("Hello from weather main!")
-
+    
 
 def show_header():
     print('-' * 40)
