@@ -1,7 +1,11 @@
 import os
 
 def load(name):
-    # todo: populate from file if it exists.
+    """
+    This method creates and loads a new journa.
+    :param name: Tis is the base name of the journal to load.
+    :return: A new joural data structure populated with the file data.
+    """
     data = []
     filename = get_full_pathname(name)
 
