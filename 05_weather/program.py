@@ -3,13 +3,14 @@ import requests
 
 Location = collections.namedtuple('Location', 'city state country')
 Weather  = collections.namedtuple('Weather', 'location units temp condition')
+
+
 def main():
     # Show the header
     show_header()
 
     # Get the location request
     location_text  = input('Where do you want the weather report (e.g. Salt Lake, US? ')
-    print(f'You selcted {location_text}')
 
     # Convert plaintext over to data we can use
     loc = convert_plaintext_location(location_text)
@@ -18,7 +19,21 @@ def main():
     weather = call_weather_api(loc)
 
     # Report the weather
-    print('The weather in {} is {} {} and {}.')
+    location_name = get_location_name(loc)
+    if weather.units =='imperial':
+        scale = 'F'
+    else:
+        scale = 'C'
+    print(f'The weather in {location_name} is {weather.temp} {scale} and { weather.condition}')
+
+
+
+def get_location_name(location):
+    if not location.state:
+        return f'{location.city.capitalize()}, {location.country.upper()}'
+    else:
+        return f'{location.city.capitalize()}, {location.state.upper()}, {location.country.upper()}'
+
 
 def call_weather_api(loc):
     # &state=OR
@@ -44,7 +59,7 @@ def convert_api_to_weather(data, loc):
     w = data.get('weather')
     condition = f"{w.get('category')}: {w.get('description').capitalize()}"
 
-    weather = Weather(loc, 'imperial', temp, condition)
+    weather = Weather(loc, data.gets('units'), temp, condition)
     return weather
 
 
