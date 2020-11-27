@@ -1,8 +1,10 @@
 """
 Program to retrive random cat videos
 """
-import os
 import cat_service
+import platform
+import os
+import subprocess
 
 def main():
     """
@@ -13,7 +15,7 @@ def main():
     # download cat pictures
     download_cats(folder)
     # display cats
-
+    display_cats(folder)
 
 
 def print_header():
@@ -49,6 +51,17 @@ def download_cats(folder):
         cat_service.get_cat(folder, name)
     print('Done.')
 
-    
+
+def display_cats(folder):
+    print('Displaying cats in OS window.')
+    if platform.system() == 'Darwin':
+        subprocess.call(['open', folder])
+    elif platform.system() == 'Windows':
+        subprocess.call(['start', folder])
+    elif platform.system() == 'Linux':
+        subprocess.call(['xdg-open', folder])
+    else:
+        print(f"We don't support your OS: {platform.system()}")
+
 if __name__ == '__main__':
     main()
