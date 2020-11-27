@@ -15,10 +15,10 @@ def main():
     loc = convert_plaintext_location(location_text)
 
     # Get report from the API.
-    data = call_weather_api(loc)
-  
-    # Report the weather
+    weather = call_weather_api(loc)
 
+    # Report the weather
+    print('The weather in {} is {} {} and {}.')
 
 def call_weather_api(loc):
     # &state=OR
@@ -35,7 +35,6 @@ def call_weather_api(loc):
 
     data = resp.json()
     weather = convert_api_to_weather(data, loc)
-    print(weather)
     return weather
 
 def convert_api_to_weather(data, loc):
