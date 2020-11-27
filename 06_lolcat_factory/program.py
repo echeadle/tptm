@@ -2,17 +2,17 @@
 Program to retrive random cat videos
 """
 import os
-
+import cat_service
 
 def main():
     """
     Main Module, where program starts
     """
     print_header()
-    # get or create output folder
     folder = get_or_create_output_folder()
-    print(f'Found or created folder {folder}')
     # download cat pictures
+    download_cats(folder)
+    # display cats
 
 
 
@@ -39,6 +39,13 @@ def get_or_create_output_folder():
         os.mkdir(full_path)
 
     return full_path
+
+def download_cats(folder):
+    cat_count = 8
+    for i in range(1, cat_count + 1):
+        name = f'lolcat_{i}'
+    cat_service.get_cat(folder, name)
+
 
 if __name__ == '__main__':
     main()
