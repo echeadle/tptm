@@ -7,8 +7,7 @@ Program to retrive random cat videos
 Main Module, where program starts
 """
 def main():
-    # Print Header
-    show_header()
+    print_header()
     # get or create output folder
     # download cat pictures
     print('Hello from main')
@@ -17,7 +16,7 @@ def main():
 Simple Show header method
 :params: None
 """
-def show_header():
+def print_header():
     print('-' * 40)
     print('           CAT FACTORY')
     print('-' * 40)
