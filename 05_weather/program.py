@@ -7,17 +7,12 @@ Weather  = collections.namedtuple('Weather', 'location units temp condition')
 
 def main():
     show_header()
-
-    # Get the location request
     location_text  = input('Where do you want the weather report (e.g. Salt Lake, US? ')
-
-    # Convert plaintext over to data we can use
     loc = convert_plaintext_location(location_text)
-
-    # Get report from the API.
     weather = call_weather_api(loc)
+    report_weather(loc, weather)
 
-    # Report the weather
+def report_weather(loc, weather):
     location_name = get_location_name(loc)
     if weather.units =='imperial':
         scale = 'F'
