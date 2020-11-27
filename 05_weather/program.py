@@ -9,8 +9,15 @@ def main():
     show_header()
     location_text  = input('Where do you want the weather report (e.g. Salt Lake, US? ')
     loc = convert_plaintext_location(location_text)
+    if not loc:
+        print(f'Count not find anything about {location_text}.')
+        return
     weather = call_weather_api(loc)
+    if not weather:
+        print(f'Count not get the weather for {location_text} from the API.')
+        return
     report_weather(loc, weather)
+
 
 def report_weather(loc, weather):
     location_name = get_location_name(loc)
@@ -39,7 +46,7 @@ def call_weather_api(loc):
     
     resp = requests.get(url)
     if resp.status_code in {400, 404, 500}:
-        print(f'Error: {resp.text}.')
+        # print(f'Error: {resp.text}.')
         return None
 
     data = resp.json()
