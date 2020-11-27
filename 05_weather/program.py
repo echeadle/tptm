@@ -6,7 +6,6 @@ Weather  = collections.namedtuple('Weather', 'location units temp condition')
 
 
 def main():
-    # Show the header
     show_header()
 
     # Get the location request
