@@ -57,7 +57,7 @@ def display_cats(folder):
     if platform.system() == 'Darwin':
         subprocess.call(['open', folder])
     elif platform.system() == 'Windows':
-        subprocess.call(['start', folder])
+        subprocess.call(['explorer', folder])
     elif platform.system() == 'Linux':
         subprocess.call(['xdg-open', folder])
     else:
