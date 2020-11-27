@@ -34,20 +34,21 @@ def call_weather_api(loc):
         return None
 
     data = resp.json()
+    weather = convert_api_to_weather(data, loc)
+    print(weather)
+    return weather
 
+def convert_api_to_weather(data, loc):
     #"weather":{"description":"overcast clouds","category":"Clouds"}
     #"forecast":{"temp":45.91,"feels_like":40.24,"pressure":1029,"humidity":87,"low":44,"high":48}
-
     temp = data.get('forecast').get('temp')
     w = data.get('weather')
     condition = f"{w.get('category')}: {w.get('description').capitalize()}"
 
     weather = Weather(loc, 'imperial', temp, condition)
-
-    print(weather)
     return weather
 
-   
+
 def convert_plaintext_location(location_text):
     """
     Convert user input to location API can use
