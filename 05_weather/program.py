@@ -1,8 +1,8 @@
 import collections
+import requests
 
 Location = collections.namedtuple('Location', 'city state country')
-
-
+Weather  = collections.namedtuple('Weather', 'location units temp condition')
 def main():
     # Show the header
     show_header()
@@ -16,6 +16,7 @@ def main():
 
     # Get report from the API.
     data = call_weather_api(loc)
+  
     # Report the weather
 
 
@@ -24,8 +25,27 @@ def call_weather_api(loc):
     url = f'https://weather.talkpython.fm/api/weather?city={loc.city}&country={loc.country}&units=imperial'
     if loc.state:
         url += f'&state={loc.state}'
+    
+    #print(f"Would call {url}")
+    
+    resp = requests.get(url)
+    if resp.status_code in {400, 404, 500}:
+        print(f'Error: {resp.text}.')
+        return None
 
-        
+    data = resp.json()
+    print(data)
+
+    temp = data.get('forecast').get('temp')
+    w = data.get('weather')
+    condition = f"{w.get('category')}: {w.get('description')}"
+    
+    weather = Weather(loc, 'imperial', temp, condition)
+
+
+    return weather
+
+   
 def convert_plaintext_location(location_text):
     """
     Convert user input to location API can use
