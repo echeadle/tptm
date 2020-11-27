@@ -14,13 +14,18 @@ def main():
     # Convert plaintext over to data we can use
     loc = convert_plaintext_location(location_text)
 
-    print(loc)
-
     # Get report from the API.
-    data = call_weather_api()
+    data = call_weather_api(loc)
     # Report the weather
 
 
+def call_weather_api(loc):
+    # &state=OR
+    url = f'https://weather.talkpython.fm/api/weather?city={loc.city}&country={loc.country}&units=imperial'
+    if loc.state:
+        url += f'&state={loc.state}'
+
+        
 def convert_plaintext_location(location_text):
     """
     Convert user input to location API can use
