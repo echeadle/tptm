@@ -41,11 +41,14 @@ def get_or_create_output_folder():
     return full_path
 
 def download_cats(folder):
+    print('Contacting server to download cats')
     cat_count = 8
     for i in range(1, cat_count + 1):
         name = f'lolcat_{i}'
-    cat_service.get_cat(folder, name)
+        print(f'Downloading cat {name}')
+        cat_service.get_cat(folder, name)
+    print('Done.')
 
-
+    
 if __name__ == '__main__':
     main()
