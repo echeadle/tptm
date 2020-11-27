@@ -12,9 +12,7 @@ def main():
     """
     print_header()
     folder = get_or_create_output_folder()
-    # download cat pictures
     download_cats(folder)
-    # display cats
     display_cats(folder)
 
 
