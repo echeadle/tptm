@@ -34,12 +34,14 @@ def call_weather_api(loc):
         return None
 
     data = resp.json()
-    print(data)
+
+    #"weather":{"description":"overcast clouds","category":"Clouds"}
+    #"forecast":{"temp":45.91,"feels_like":40.24,"pressure":1029,"humidity":87,"low":44,"high":48}
 
     temp = data.get('forecast').get('temp')
     w = data.get('weather')
-    condition = f"{w.get('category')}: {w.get('description')}"
-    
+    condition = f"{w.get('category')}: {w.get('description').capitalize()}"
+
     weather = Weather(loc, 'imperial', temp, condition)
 
 
