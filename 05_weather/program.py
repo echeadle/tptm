@@ -44,7 +44,7 @@ def call_weather_api(loc):
 
     weather = Weather(loc, 'imperial', temp, condition)
 
-
+    print(weather)
     return weather
 
    
