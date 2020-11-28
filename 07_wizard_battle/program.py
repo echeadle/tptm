@@ -1,4 +1,4 @@
-from actors import Wizard, Creature, SmallAnimal
+from actors import Wizard, Creature, SmallAnimal, Dragon
 import random
 import time
 
@@ -18,8 +18,8 @@ def game_loop():
         SmallAnimal('Toad', 1),
         Creature('Tiger', 12),
         SmallAnimal('Bat', 5),
-        Creature('Dragon', 50),
-        Wizard('Evil Wizard', 150)
+        Dragon('Dragon', 50, 75, True),
+        Wizard('Evil Wizard', 1000)
     ]
 
     hero = Wizard('Gandolf', 75)
