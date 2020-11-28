@@ -1,9 +1,21 @@
 import random
 
-class Wizard:
-    def __init__(self, name, level):
+
+class Creature:
+    def __init__(self, name, the_level):
         self.name = name
-        self.level = level
+        self.level = the_level
+
+    def __repr__(self):
+        return f'Creature {self.name} of level {self.level}'
+
+    def get_defensive_roll(self):
+        return random.randint(1, 12) * self.level
+
+
+class Wizard(Creature):
+    def __init__(self, name, level):
+        super().__init__(name, level)
 
 
     def attack(self, creature):
