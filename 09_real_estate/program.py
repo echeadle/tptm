@@ -108,16 +108,22 @@ def query_data(data): #list[Purchase]):
     two_bed_homes = [
         p # projection or items
         for p in data # the set to process
-         if p.beds == 2 # test / condition
+        if announce(p, '2-bedrooms, found {}'.format(p.beds)) and p.beds == 2 # test / condition
     ]
     
     # ave_price = statistics.mean(prices)
     # print("The average price of a 2-bedroom home is ${:,}".format(int(ave_price)))
-    ave_price = statistics.mean([p.price for p in two_bed_homes])
-    ave_baths = statistics.mean([p.baths for p in two_bed_homes])
-    ave_sqft = statistics.mean([p.sq__ft for p in two_bed_homes])
+    ave_price = statistics.mean([announce(p.price, 'price') for p in two_bed_homes[:5]])
+    ave_baths = statistics.mean([p.baths for p in two_bed_homes[:5]])
+    ave_sqft = statistics.mean([p.sq__ft for p in two_bed_homes[:5]])
     print("The average price of a 2-bedroom home is ${:,}, baths={}, sq ft={:,}"
         .format(int(ave_price), round(ave_baths), round(ave_sqft)))
+
+
+def announce(item, msg):
+    print(f"Pulling item {item} from {msg}")
+    return item
+
 
 if __name__ ==  "__main__":
     main()
