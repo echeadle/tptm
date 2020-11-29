@@ -64,7 +64,10 @@ def load_file(filename):
 
 
 def query_data(data):
-    pass
+    # most expensive house?
+    # least expensive house?
+    # average price house?
+    # average price of  2 bedroom houses
 
 if __name__ == "__main__":
     main()
