@@ -62,12 +62,24 @@ def load_file(filename):
 #             lines.append(line_data)
 #         print(lines[:5])
 
+def get_price(p):
+    return p.price
 
-def query_data(data):
-    # most expensive house?
-    # least expensive house?
+def query_data(data): #list[Purchase]):
+    # data.sort(key=get_price)
+    data.sort(key=lambda p: p.price)
+
+    high_purchase = data[-1]
+    print("The most expensive house is ${:,} with {} beds and {} baths".format(
+        high_purchase.price, high_purchase.beds, high_purchase.baths))
+
+    low_purchase = data[0]
+    print("The least expensive house is ${:,} with {} beds and {} baths".format(
+        low_purchase.price, low_purchase.beds, low_purchase.baths))
+
     # average price house?
     # average price of  2 bedroom houses
+    
 
-if __name__ == "__main__":
+if __name__ ==  "__main__":
     main()
