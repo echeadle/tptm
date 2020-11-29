@@ -26,19 +26,25 @@ def get_data_file():
 def load_file(filename):
     with open(filename, 'r',encoding='utf-8') as fin:
 
-        header = fin.readline().strip
-        reader = csv.reader(fin)
+
+        reader = csv.DictReader(fin)
         for row in reader:
-            print(row)
+            print(type(row), row)
+            print(f"Bed count: {row['beds']}")
+
+        # header = fin.readline().strip
+        # reader = csv.reader(fin)
+        # for row in reader:
+        #     print(row)
 
         
-        print(f'found header: {header}')
+        # print(f'found header: {header}')
 
-        lines = []
-        for line in fin:
-            line_data = line.strip().split(',')
-            lines.append(line_data)
-        print(lines[:5])
+        # lines = []
+        # for line in fin:
+        #     line_data = line.strip().split(',')
+        #     lines.append(line_data)
+        # print(lines[:5])
 
 
 # def load_file_basic(filename):
