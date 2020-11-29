@@ -1,5 +1,7 @@
 import csv
 import os
+import statistics
+
 from data_types import Purchase
 
 
@@ -62,8 +64,8 @@ def load_file(filename):
 #             lines.append(line_data)
 #         print(lines[:5])
 
-def get_price(p):
-    return p.price
+# def get_price(p):
+#     return p.price
 
 def query_data(data): #list[Purchase]):
     # data.sort(key=get_price)
@@ -78,8 +80,44 @@ def query_data(data): #list[Purchase]):
         low_purchase.price, low_purchase.beds, low_purchase.baths))
 
     # average price house?
-    # average price of  2 bedroom houses
+    # prices = []
+    # for pur in data:
+    #     prices.append(pur.price)
+
+    # ave_price = statistics.mean(prices)
+    # print("The average home price is ${:,}".format(int(ave_price)))
     
+    prices = [
+        p.price # projection or items
+        for p in data # the set to process
+    ]
+    
+    ave_price = statistics.mean(prices)
+    print("The average home price is ${:,}".format(int(ave_price)))
+   
+    # # average price of  2 bedroom houses
+    # prices = []
+    # for pur in data:
+    #     if pur.beds ==2:
+    #         prices.append(pur.price)
+    # prices = [
+    #     p.price # projection or items
+    #     for p in data # the set to process
+    #      if p.beds == 2 # test / condition
+    # ]
+    two_bed_homes = [
+        p # projection or items
+        for p in data # the set to process
+         if p.beds == 2 # test / condition
+    ]
+    
+    # ave_price = statistics.mean(prices)
+    # print("The average price of a 2-bedroom home is ${:,}".format(int(ave_price)))
+    ave_price = statistics.mean([p.price for p in two_bed_homes])
+    ave_baths = statistics.mean([p.baths for p in two_bed_homes])
+    ave_sqft = statistics.mean([p.sq__ft for p in two_bed_homes])
+    print("The average price of a 2-bedroom home is ${:,}, baths={}, sq ft={:,}"
+        .format(int(ave_price), round(ave_baths), round(ave_sqft)))
 
 if __name__ ==  "__main__":
     main()
