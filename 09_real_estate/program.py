@@ -105,22 +105,34 @@ def query_data(data): #list[Purchase]):
     #     for p in data # the set to process
     #      if p.beds == 2 # test / condition
     # ]
-    two_bed_homes = [
+    two_bed_homes = (
         p # projection or items
         for p in data # the set to process
         if announce(p, '2-bedrooms, found {}'.format(p.beds)) and p.beds == 2 # test / condition
-    ]
+    )
     
+    homes = []
+    for h in two_bed_homes:
+        if len(homes) > 5:
+            break
+        homes.append(h)
+
     # ave_price = statistics.mean(prices)
     # print("The average price of a 2-bedroom home is ${:,}".format(int(ave_price)))
-    ave_price = statistics.mean([announce(p.price, 'price') for p in two_bed_homes[:5]])
-    ave_baths = statistics.mean([p.baths for p in two_bed_homes[:5]])
-    ave_sqft = statistics.mean([p.sq__ft for p in two_bed_homes[:5]])
+    # ave_price = statistics.mean([announce(p.price, 'price') for p in two_bed_homes[:5]])
+    # ave_baths = statistics.mean([p.baths for p in two_bed_homes[:5]])
+    # ave_sqft = statistics.mean([p.sq__ft for p in two_bed_homes[:5]])
+    ave_price = statistics.mean((announce(p.price, 'price') for p in homes))
+    ave_baths = statistics.mean((p.baths for p in homes))
+    ave_sqft = statistics.mean((p.sq__ft for p in homes))
+    
     print("The average price of a 2-bedroom home is ${:,}, baths={}, sq ft={:,}"
         .format(int(ave_price), round(ave_baths), round(ave_sqft)))
 
-
-def announce(item, msg):
+    # ave_price = statistics.mean([announce(p.price, 'price') for p in two_bed_homes[])
+    # ave_baths = statistics.mean([p.baths for p in two_bed_homes[:5]])
+    # a
+def announce(item,  msg):
     print(f"Pulling item {item} from {msg}")
     return item
 
